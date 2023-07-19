@@ -20,6 +20,15 @@ const liveChartReducer = (state, action) => {
 				...state,
 				events: [...state.events, action.payload],
 			};
+		case 'update_event': {
+			const { index, event } = action.payload;
+			const events = [...state.events];
+			events[index] = event;
+			return {
+				...state,
+				events,
+			};
+		}
 		case 'toggle_play_pause':
 			return {
 				...state,
@@ -34,6 +43,11 @@ const liveChartReducer = (state, action) => {
 			return {
 				...state,
 				events: [...state.events, createRandomEvent(state.events.length)],
+			};
+		case 'reset':
+			return {
+				...state,
+				events: initialEvents,
 			};
 		default: {
 			throw new Error(`Unhandled action type: ${action.type}`);
