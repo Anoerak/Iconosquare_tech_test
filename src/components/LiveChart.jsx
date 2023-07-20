@@ -5,7 +5,7 @@ import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 const LiveChart = () => {
 	const { data, dispatch } = useLiveChartContext();
 	const nbTotalEvents = data?.events?.length;
-	const eventsFiltered = data.events.slice(nbTotalEvents - 21, nbTotalEvents);
+	const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
 
 	const handleClick = (e) => {
 		const index = e.activePayload[0].payload.index;

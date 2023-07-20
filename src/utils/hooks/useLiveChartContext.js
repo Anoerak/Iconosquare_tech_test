@@ -29,11 +29,12 @@ const liveChartReducer = (state, action) => {
 				events,
 			};
 		}
-		case 'toggle_play_pause':
+		case 'toggle_play_pause': {
 			return {
 				...state,
 				isPlaying: !state.isPlaying,
 			};
+		}
 		case 'go_back':
 			return {
 				...state,

@@ -4,7 +4,6 @@ import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 const ToolBar = () => {
 	const { dispatch } = useLiveChartContext();
 
-	// We dispatch an action to the reducer, then the reducer will update the state therefore the chart will be updated
 	const togglePlayPause = () => {
 		dispatch({
 			type: 'toggle_play_pause',
