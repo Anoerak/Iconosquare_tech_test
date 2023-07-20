@@ -3,7 +3,7 @@ import { createRandomEvent } from '../utils';
 
 const LiveChartContext = createContext();
 
-const initialEvents = Array.from(Array(50)).map((_, ix) => createRandomEvent(ix));
+const initialEvents = Array.from(Array(51)).map((_, ix) => createRandomEvent(ix));
 
 const initialData = {
 	events: initialEvents,

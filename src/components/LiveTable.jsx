@@ -110,6 +110,9 @@ const LiveTable = (props) => {
 	);
 };
 
-LiveTable.propTypes = {};
+LiveTable.propTypes = {
+	index: Number,
+	value: Number,
+};
 
 export default LiveTable;

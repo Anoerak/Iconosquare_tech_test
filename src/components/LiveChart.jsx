@@ -3,14 +3,35 @@ import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis, ResponsiveContai
 import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 
 const LiveChart = () => {
-	const { data } = useLiveChartContext();
+	const { data, dispatch } = useLiveChartContext();
 	const nbTotalEvents = data?.events?.length;
-	const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
+	const eventsFiltered = data.events.slice(nbTotalEvents - 21, nbTotalEvents);
+
+	const handleClick = (e) => {
+		const index = e.activePayload[0].payload.index;
+		const value1 = e.activePayload[0].payload.value1;
+		const newValue1 = prompt(`Edit value1 of index ${index}`, value1);
+		if (newValue1) {
+			dispatch({
+				type: 'update_event',
+				payload: {
+					index: index,
+					event: {
+						...data.events[index],
+						value1: newValue1,
+					},
+				},
+			});
+		}
+	};
+
 	return (
 		<div className='mb-8'>
 			<ResponsiveContainer height={250}>
 				<AreaChart
-					onClick={(e) => console.log(e.activeTooltipIndex)}
+					// onclick, we console.log the index and the value of the tooltip
+					// onClick={(e) => console.log(e.activePayload[0].payload.index, e.activePayload[0].payload.value1)}
+					onClick={handleClick}
 					data={eventsFiltered}
 					margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
 				>
@@ -50,6 +71,9 @@ const LiveChart = () => {
 	);
 };
 
-LiveChart.propTypes = {};
+LiveChart.propTypes = {
+	index: Number,
+	value: Number,
+};
 
 export default LiveChart;
