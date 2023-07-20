@@ -4,6 +4,8 @@ import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 const ToolBar = () => {
 	const { dispatch } = useLiveChartContext();
 
+	// A switch case could use here instead of the following single action functions. 
+
 	const togglePlayPause = () => {
 		dispatch({
 			type: 'toggle_play_pause',
