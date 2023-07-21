@@ -2,32 +2,34 @@ import React from 'react';
 import { useLiveChartContext } from '../utils/hooks/useLiveChartContext';
 
 const ToolBar = () => {
-	const { dispatch } = useLiveChartContext();
+	const { dispatch, data } = useLiveChartContext();
 
-	// A switch case could use here instead of the following single action functions. 
-
-	const togglePlayPause = () => {
-		dispatch({
-			type: 'toggle_play_pause',
-		});
-	};
-
-	const goBack = () => {
-		dispatch({
-			type: 'go_back',
-		});
-	};
-
-	const goForward = () => {
-		dispatch({
-			type: 'go_forward',
-		});
-	};
-
-	const reset = () => {
-		dispatch({
-			type: 'reset',
-		});
+	// A switch case could use here instead of the following single action functions.
+	const streamAction = (action) => {
+		switch (action) {
+			case 'toggle_play_pause':
+				dispatch({
+					type: 'toggle_play_pause',
+				});
+				break;
+			case 'go_back':
+				dispatch({
+					type: 'go_back',
+				});
+				break;
+			case 'go_forward':
+				dispatch({
+					type: 'go_forward',
+				});
+				break;
+			case 'reset':
+				dispatch({
+					type: 'reset',
+				});
+				break;
+			default:
+				break;
+		}
 	};
 
 	return (
@@ -36,32 +38,37 @@ const ToolBar = () => {
 				<button
 					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
 					onClick={() => {
-						togglePlayPause();
+						streamAction('toggle_play_pause');
 					}}
 				>
 					Play/Pause
 				</button>
 				<button
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+					className={`${
+						data.isPlaying ? 'bg-gray-300' : 'bg-green-500 hover:bg-green-700'
+					} text-white font-bold py-2 px-4 rounded`}
+					disabled={data.isPlaying}
 					onClick={() => {
-						goBack();
+						streamAction('go_back');
 					}}
 				>
 					Back
 				</button>
 				<button
-					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+					className={`${
+						data.isPlaying ? 'bg-gray-300' : 'bg-green-500 hover:bg-green-700'
+					} text-white font-bold py-2 px-4 rounded`}
+					disabled={data.isPlaying}
 					onClick={() => {
-						goForward();
+						streamAction('go_forward');
 					}}
 				>
 					Forward
 				</button>
-				{/* We add a reset button */}
 				<button
 					className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded'
 					onClick={() => {
-						reset();
+						streamAction('reset');
 					}}
 				>
 					Reset

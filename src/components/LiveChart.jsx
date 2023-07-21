@@ -7,7 +7,7 @@ const LiveChart = () => {
 	const nbTotalEvents = data?.events?.length;
 	const eventsFiltered = data.events.slice(nbTotalEvents - 20, nbTotalEvents);
 
-	const handleClick = (e) => {
+	const handleClickEditValue1 = (e) => {
 		const index = e.activePayload[0].payload.index;
 		const value1 = e.activePayload[0].payload.value1;
 		const newValue1 = prompt(`Edit value1 of index ${index}`, value1);
@@ -31,7 +31,7 @@ const LiveChart = () => {
 				<AreaChart
 					// onclick, we console.log the index and the value of the tooltip
 					// onClick={(e) => console.log(e.activePayload[0].payload.index, e.activePayload[0].payload.value1)}
-					onClick={handleClick}
+					onClick={handleClickEditValue1}
 					data={eventsFiltered}
 					margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
 				>
