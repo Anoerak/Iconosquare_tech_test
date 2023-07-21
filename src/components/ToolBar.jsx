@@ -45,7 +45,7 @@ const ToolBar = () => {
 				</button>
 				<button
 					className={`${
-						data.isPlaying ? 'bg-gray-300' : 'bg-green-500 hover:bg-green-700'
+						data.isPlaying ? 'bg-gray-300 cursor-not-allowed' : 'bg-green-500 hover:bg-green-700'
 					} text-white font-bold py-2 px-4 rounded`}
 					disabled={data.isPlaying}
 					onClick={() => {
@@ -56,7 +56,7 @@ const ToolBar = () => {
 				</button>
 				<button
 					className={`${
-						data.isPlaying ? 'bg-gray-300' : 'bg-green-500 hover:bg-green-700'
+						data.isPlaying ? 'bg-gray-300 cursor-not-allowed' : 'bg-green-500 hover:bg-green-700'
 					} text-white font-bold py-2 px-4 rounded`}
 					disabled={data.isPlaying}
 					onClick={() => {
