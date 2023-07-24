@@ -8,7 +8,6 @@ const initialEvents = Array.from(Array(51)).map((_, ix) => createRandomEvent(ix)
 const initialData = {
 	events: initialEvents,
 	isPlaying: true,
-	previousValue: 1,
 };
 
 const liveChartReducer = (state, action) => {
@@ -39,8 +38,7 @@ const liveChartReducer = (state, action) => {
 		case 'go_back':
 			return {
 				...state,
-				previousValue: state.events[state.events.length - 1].value,
-				events: state.previousValue === 0 ? [] : state.events.slice(0, -1),
+				events: state.events.slice(0, -1),
 			};
 		case 'go_forward':
 			return {
