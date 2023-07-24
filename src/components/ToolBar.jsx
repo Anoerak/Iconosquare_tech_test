@@ -13,11 +13,26 @@ const ToolBar = () => {
 				});
 				break;
 			case 'go_back':
-				dispatch({
-					type: 'go_back',
-				});
+				let element = document.querySelector('.go__back__button');
+				if (data.events.length - 21 >= 0) {
+					dispatch({
+						type: 'go_back',
+					});
+				} else {
+					element.classList.add('bg-gray-300');
+					element.classList.remove('bg-green-500');
+					element.classList.remove('hover:bg-green-700');
+				}
 				break;
 			case 'go_forward':
+				if (data.events.length - 18 > 1) {
+					let element = document.querySelector('.go__back__button');
+					if (element.classList.contains('bg-gray-300')) {
+						element.classList.remove('bg-gray-300');
+						element.classList.add('bg-green-500');
+						element.classList.add('hover:bg-green-700');
+					}
+				}
 				dispatch({
 					type: 'go_forward',
 				});
@@ -46,7 +61,7 @@ const ToolBar = () => {
 				<button
 					className={`${
 						data.isPlaying ? 'bg-gray-300 cursor-not-allowed' : 'bg-green-500 hover:bg-green-700'
-					} text-white font-bold py-2 px-4 rounded`}
+					} text-white font-bold py-2 px-4 rounded go__back__button`}
 					disabled={data.isPlaying}
 					onClick={() => {
 						streamAction('go_back');
